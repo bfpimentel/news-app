@@ -1,0 +1,44 @@
+plugins {
+    id('com.android.application')
+    id('kotlin-android')
+    id('kotlin-android-extensions')
+}
+
+apply(from: '../dependencies.gradle')
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "dev.pimentel.news"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(':core')
+    testImplementation project(':core')
+
+    implementation projectDependencies.appCompat
+
+    testImplementation projectDependencies.junit
+}

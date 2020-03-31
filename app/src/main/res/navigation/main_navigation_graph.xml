@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation_graph"
-    app:startDestination="@id/feed_fragment">
+    app:startDestination="@id/feed">
 
     <fragment
-        android:id="@+id/feed_fragment"
+        android:id="@+id/feed"
         android:name="dev.pimentel.feed.presentation.FeedFragment"
         android:label="FeedFragment"
         tools:layout="@layout/feed_fragment_layout" />
+
+    <fragment
+        android:id="@+id/search"
+        android:label="SearchFragment" />
+
+    <fragment
+        android:id="@+id/fragment"
+        android:label="ProfileFragment" />
+
 </navigation>

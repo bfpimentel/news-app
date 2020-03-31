@@ -30,14 +30,23 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation project(':core')
     testImplementation project(':core')
+    testImplementation project(':feed')
 
     implementation projectDependencies.kotlinStdlib
+    implementation projectDependencies.materialDesign
     implementation projectDependencies.appCompat
+    implementation projectDependencies.koin
+    implementation projectDependencies.navigationFragment
+    implementation projectDependencies.navigationUI
 
     testImplementation testDependencies.junit
 }

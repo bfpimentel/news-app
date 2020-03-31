@@ -38,8 +38,9 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':feed')
+
     testImplementation project(':core')
-    testImplementation project(':feed')
 
     implementation projectDependencies.kotlinStdlib
     implementation projectDependencies.materialDesign

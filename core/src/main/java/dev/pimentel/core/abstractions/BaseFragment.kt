@@ -38,8 +38,8 @@ abstract class BaseFragment<ViewModelType : BaseContract.ViewModel>(
     }
 
     override fun onDestroy() {
-        unloadKoinModules(modules)
         super.onDestroy()
+        unloadKoinModules(modules)
     }
 
     protected inline fun <ObserverType> LiveData<ObserverType>.observe(

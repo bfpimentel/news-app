@@ -8,6 +8,10 @@ apply(from: "../dependencies.gradle")
 
 android {
     compileSdkVersion 29
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {

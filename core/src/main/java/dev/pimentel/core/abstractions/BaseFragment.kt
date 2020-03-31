@@ -1,27 +1,42 @@
 package dev.pimentel.core.abstractions
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.viewbinding.ViewBinding
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
 import org.koin.core.module.Module
 
-abstract class BaseFragment<ViewModelType : BaseContract.ViewModel>(
+abstract class BaseFragment<ViewModelType, BindingType>(
     @LayoutRes layoutResId: Int
-) : Fragment(layoutResId) {
+) : Fragment(layoutResId), ViewBindingHolder<BindingType> by ViewBindingHolderImpl()
+        where ViewModelType : BaseContract.ViewModel,
+              BindingType : ViewBinding {
 
     abstract val modules: List<Module>
     abstract val viewModel: ViewModelType
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         loadKoinModules(modules)
-        bindViewModel()
+        return bindView()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unloadKoinModules(modules)
+    }
+
+    abstract fun bindView(): View
 
     open fun bindViewModel() {
         viewModel.isLoading().observe {
@@ -35,11 +50,6 @@ abstract class BaseFragment<ViewModelType : BaseContract.ViewModel>(
         viewModel.error().observe {
             // TODO
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        unloadKoinModules(modules)
     }
 
     protected inline fun <ObserverType> LiveData<ObserverType>.observe(

@@ -1,5 +1,7 @@
 package dev.pimentel.feed.presentation
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import dev.pimentel.core.abstractions.BaseViewModel
 import dev.pimentel.core.schedulerprovider.SchedulerProvider
 import dev.pimentel.core.usecases.GetErrorMessage
@@ -10,4 +12,13 @@ class FeedViewModel(
 ) : BaseViewModel(
     schedulerProvider,
     getErrorMessage
-), FeedContract.ViewModel
+), FeedContract.ViewModel {
+
+    private val testText = MutableLiveData<String>()
+
+    override fun initialize() {
+        testText.postValue("testeteteteteteet")
+    }
+
+    override fun testText(): LiveData<String> = testText
+}

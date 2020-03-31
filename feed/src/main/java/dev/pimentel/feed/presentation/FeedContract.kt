@@ -1,8 +1,13 @@
 package dev.pimentel.feed.presentation
 
+import androidx.lifecycle.LiveData
 import dev.pimentel.core.abstractions.BaseContract
 
 interface FeedContract {
 
-    interface ViewModel : BaseContract.ViewModel
+    interface ViewModel : BaseContract.ViewModel {
+        fun initialize()
+
+        fun testText(): LiveData<String>
+    }
 }

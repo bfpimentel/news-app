@@ -7,7 +7,7 @@ plugins {
 apply(from: "../dependencies.gradle")
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion projectConfig.compileSdkVersion
 
     viewBinding {
         enabled = true

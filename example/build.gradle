@@ -7,9 +7,22 @@ plugins {
 apply(from: "../dependencies.gradle")
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion projectConfig.compileSdkVersion
+
+    viewBinding {
+        enabled = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":core")
+
+    implementation projectDependencies.kotlinStdlib
+    implementation projectDependencies.appCompat
+    implementation projectDependencies.koin
+    implementation projectDependencies.rxJava
+    implementation projectDependencies.rxAndroid
+
+    testImplementation testDependencies.junit
 }

@@ -7,15 +7,15 @@ plugins {
 apply(from: '../dependencies.gradle')
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion projectConfig.compileSdkVersion
+    buildToolsVersion projectConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId "dev.pimentel.news"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0.0"
+        applicationId projectConfig.applicationId
+        minSdkVersion projectConfig.minSdkVersion
+        targetSdkVersion projectConfig.targetSdkVersion
+        versionCode projectVersion.major * 10000 + projectVersion.minor * 100 + projectVersion.minor
+        versionName "${projectVersion.major}.${projectVersion.minor}.${projectVersion.patch}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

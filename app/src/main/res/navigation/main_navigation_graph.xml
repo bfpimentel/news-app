@@ -13,10 +13,14 @@
 
     <fragment
         android:id="@+id/search"
-        android:label="SearchFragment" />
+        android:name="dev.pimentel.search.presentation.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/search_fragment_layout" />
 
     <fragment
-        android:id="@+id/fragment"
-        android:label="ProfileFragment" />
+        android:id="@+id/profile"
+        android:name="dev.pimentel.profile.presentation.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile_fragment_layout" />
 
 </navigation>

@@ -13,7 +13,9 @@
 
     <fragment
         android:id="@+id/search"
-        android:label="SearchFragment" />
+        android:name="dev.pimentel.search.presentation.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/search_fragment_layout" />
 
     <fragment
         android:id="@+id/fragment"

@@ -41,10 +41,12 @@ android {
 }
 
 dependencies {
-    implementation project(':core')
-    implementation project(':feed')
+    implementation project(":core")
+    implementation project(":feed")
+    implementation project(":search")
+    implementation project(":profile")
 
-    testImplementation project(':core')
+    testImplementation project(":core")
 
     implementation projectDependencies.kotlinStdlib
     implementation projectDependencies.materialDesign

@@ -7,15 +7,12 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.viewbinding.ViewBinding
 
 interface ViewBindingHolder<T : ViewBinding> {
-
-    val binding: T?
-
     fun initBinding(binding: T, fragment: BaseFragment<*, T>, onBind: T.() -> Unit): View
 }
 
 class ViewBindingHolderImpl<T : ViewBinding> : ViewBindingHolder<T>, LifecycleObserver {
 
-    override var binding: T? = null
+    private var binding: T? = null
     private var lifecycle: Lifecycle? = null
 
     private lateinit var fragmentName: String

@@ -16,13 +16,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":core")
-    implementation project(":navigator")
+    implementation project(":feed")
+    implementation project(":search")
+    implementation project(":profile")
 
     implementation projectDependencies.kotlinStdlib
-    implementation projectDependencies.materialDesign
-    implementation projectDependencies.appCompat
     implementation projectDependencies.koin
+    implementation projectDependencies.navigationFragment
+    implementation projectDependencies.navigationUI
 
     testImplementation testDependencies.junit
 }

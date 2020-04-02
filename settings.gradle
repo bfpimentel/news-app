@@ -5,3 +5,4 @@ include ":example"
 include ":feed"
 include ":search"
 include ':profile'
+include ':navigator'

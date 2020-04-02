@@ -22,6 +22,10 @@ class FeedFragment : BaseFragment<FeedContract.ViewModel, FeedFragmentLayoutBind
             feedTvTest.text = it
         }
 
+        feedBtTestNavigator.setOnClickListener {
+            viewModel.testNavigator()
+        }
+
         viewModel.initialize()
     }
 }

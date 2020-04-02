@@ -4,17 +4,37 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
-import kotlinx.android.synthetic.main.main_activity_layout.*
+import dev.pimentel.navigator.Navigator
+import dev.pimentel.news.databinding.MainActivityLayoutBinding
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
+
+    private val navigator: Navigator by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity_layout)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val binding = MainActivityLayoutBinding.inflate(layoutInflater)
+
+        val navController = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment)!!
+            .findNavController()
 
         NavigationUI.setupWithNavController(
-            main_bottom_navigation,
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment)!!.findNavController()
+            binding.mainBottomNavigation,
+            navController
         )
+
+        navigator.bind(navController)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        navigator.unbind()
     }
 }

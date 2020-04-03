@@ -16,9 +16,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":feed")
-    implementation project(":search")
-    implementation project(":profile")
 
     implementation projectDependencies.kotlinStdlib
     implementation projectDependencies.koin

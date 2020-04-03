@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import dev.pimentel.core.abstractions.BaseViewModel
 import dev.pimentel.core.schedulerprovider.SchedulerProvider
 import dev.pimentel.core.usecases.GetErrorMessage
-import dev.pimentel.navigator.Navigator
+import dev.pimentel.navigator.FeedNavigator
 
 class FeedViewModel(
     schedulerProvider: SchedulerProvider,
     getErrorMessage: GetErrorMessage,
-    private val navigator: Navigator
+    private val navigator: FeedNavigator
 ) : BaseViewModel(
     schedulerProvider,
     getErrorMessage
@@ -23,6 +23,7 @@ class FeedViewModel(
     }
 
     override fun testNavigator() {
+        navigator.testRoute()
     }
 
     override fun testText(): LiveData<String> = testText

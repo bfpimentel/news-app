@@ -19,7 +19,7 @@ jobs:
         run: bash ./gradlew detekt
 
   test:
-    name: Run all module unit tests
+    name: Run all module unit tests and check test coverage
     runs-on: ubuntu-18.04
 
     steps:
@@ -30,3 +30,7 @@ jobs:
           java-version: 1.8
       - name: Running unit tests and generating Jacoco Test Report
         run: bash ./gradlew jacocoTestReport
+      - name: Checking code coverage
+        env:
+          CODECOV_TOKEN: "a4668525-6d3c-4c98-9356-105ebcbe0c7f"
+        run: bash <(curl -s https://codecov.io/bash)

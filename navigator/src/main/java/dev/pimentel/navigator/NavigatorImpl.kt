@@ -1,11 +1,12 @@
 package dev.pimentel.navigator
 
-import android.os.Bundle
 import androidx.annotation.IdRes
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import androidx.navigation.navOptions
 
 interface FeedNavigator {
-    fun testRoute()
+    fun routeToProfile()
 }
 
 interface NavigatorBinder {
@@ -27,12 +28,27 @@ internal class NavigatorImpl : Navigator {
         this.navController = null
     }
 
-    override fun testRoute() {
-        navController?.navigate(R.id.profile)
+    override fun routeToProfile() {
+        navigate(R.id.profile)
+    }
+
+    private fun navigate(
+        @IdRes destinationId: Int,
+        args: Pair<String, Any?>? = null
+    ) {
+        val navOptions = navOptions {
+            anim {
+                enter = android.R.anim.fade_in
+                exit = android.R.anim.fade_out
+                popEnter = android.R.anim.fade_in
+                popExit = android.R.anim.fade_out
+            }
+        }
+
+        navController?.navigate(
+            destinationId,
+            args?.let { bundleOf(it) },
+            navOptions
+        )
     }
 }
-
-data class NavigationRoute(
-    @IdRes val navigationIdRes: Int,
-    val bundle: Bundle? = null
-)

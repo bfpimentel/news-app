@@ -23,7 +23,7 @@ class FeedViewModel(
     }
 
     override fun testNavigator() {
-        navigator.testRoute()
+        navigator.routeToProfile()
     }
 
     override fun testText(): LiveData<String> = testText

@@ -33,4 +33,4 @@ jobs:
       - name: Checking code coverage
         env:
           CODECOV_TOKEN: "a4668525-6d3c-4c98-9356-105ebcbe0c7f"
-        run: bash <(curl -s https://codecov.io/bash)
+        run: bash <(curl -s https://codecov.io/bash) -f ./build/reports/jacoco/jacocoTestReport.xml

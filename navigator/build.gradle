@@ -16,13 +16,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":navigator")
 
     implementation projectDependencies.kotlinStdlib
-    implementation projectDependencies.appCompat
     implementation projectDependencies.koin
-    implementation projectDependencies.rxJava
-    implementation projectDependencies.rxAndroid
+    implementation projectDependencies.navigationFragment
+    implementation projectDependencies.navigationUI
 
     testImplementation testDependencies.junit
 }

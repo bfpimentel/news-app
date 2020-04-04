@@ -7,6 +7,7 @@ interface FeedContract {
 
     interface ViewModel : BaseContract.ViewModel {
         fun initialize()
+        fun testNavigator()
 
         fun testText(): LiveData<String>
     }

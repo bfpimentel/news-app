@@ -38,20 +38,6 @@ abstract class BaseFragment<ViewModelType, BindingType>(
 
     abstract fun bindView(): View
 
-    open fun bindViewModel() {
-        viewModel.isLoading().observe {
-            // TODO
-        }
-
-        viewModel.isNotLoading().observe {
-            // TODO
-        }
-
-        viewModel.error().observe {
-            // TODO
-        }
-    }
-
     protected inline fun <ObserverType> LiveData<ObserverType>.observe(
         crossinline observer: (ObserverType) -> Unit
     ) = observe(viewLifecycleOwner, Observer { observer(it) })

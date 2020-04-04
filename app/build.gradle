@@ -42,10 +42,12 @@ android {
 
 dependencies {
     implementation project(":core")
+    implementation project(":navigator")
+
+    // Even this module doesn't call the feature modules directly, it needs their implementations.
     implementation project(":feed")
     implementation project(":search")
     implementation project(":profile")
-    implementation project(":navigator")
 
     testImplementation project(":core")
 

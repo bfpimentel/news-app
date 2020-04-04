@@ -31,6 +31,4 @@ jobs:
       - name: Running unit tests and generating Jacoco Test Report
         run: bash ./gradlew jacocoTestReport
       - name: Checking code coverage
-        env:
-          CODECOV_TOKEN: "a4668525-6d3c-4c98-9356-105ebcbe0c7f"
-        run: bash <(curl -s https://codecov.io/bash) -f ./build/reports/jacoco/jacocoTestReport.xml
+        run: bash <(curl -s https://codecov.io/bash) -f build/reports/jacoco/jacocoTestReport.xml -t "a4668525-6d3c-4c98-9356-105ebcbe0c7f"

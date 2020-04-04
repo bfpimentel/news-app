@@ -10,6 +10,8 @@ project.afterEvaluate {
             '**/*ViewHolder*.*',
             '**/*Module*.*',
             '**/*Activity*.*',
+            '**/*Fragment*.*',
+            '**/*Application*.*'
     ]
 
     final unitTestTasks = new ArrayList()

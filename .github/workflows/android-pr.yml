@@ -1,0 +1,19 @@
+name: Android PR CI
+
+on:
+  pull_request:
+    branches: 'develop'
+
+jobs:
+  test:
+    name: Run all module unit tests
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: JDK setup
+        uses: action/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Unit tests
+        run: bash ./gradlew jacocoTestReport

@@ -43,10 +43,6 @@ project.afterEvaluate {
                 enabled true
                 destination file('build/reports/jacoco/html')
             }
-            csv {
-                enabled true
-                destination file('build/reports/jacoco/jacocoTestReport.csv')
-            }
             xml {
                 enabled true
                 destination file('build/reports/jacoco/jacocoTestReport.xml')

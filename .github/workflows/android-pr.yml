@@ -5,7 +5,7 @@ on:
     branches: 'develop'
 
 jobs:
-  code analysis:
+  code-analysis:
     name: Runs Detekt for static code analysis
     runs-on: ubuntu-18.04
 

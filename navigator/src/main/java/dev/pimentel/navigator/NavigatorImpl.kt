@@ -15,7 +15,7 @@ interface NavigatorBinder {
 
 interface Navigator : NavigatorBinder, FeedNavigator
 
-class NavigatorImpl : Navigator {
+internal class NavigatorImpl : Navigator {
 
     private var navController: NavController? = null
 

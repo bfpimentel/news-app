@@ -35,5 +35,5 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           name: jacocoTestReport
-          file: ./build/reports/jacoco/jacocoTestReport.xml
+          file: build/reports/jacoco/jacocoTestReport.xml
           fail_ci_if_error: false # Need to change to = true after fixing unit tests.

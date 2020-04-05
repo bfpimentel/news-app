@@ -34,6 +34,7 @@ abstract class BaseFragment<ViewModelType, BindingType>(
     override fun onDestroy() {
         super.onDestroy()
         unloadKoinModules(modules)
+        unbindView()
     }
 
     abstract fun bindView(): View

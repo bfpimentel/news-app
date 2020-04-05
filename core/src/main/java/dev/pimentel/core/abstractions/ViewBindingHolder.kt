@@ -8,6 +8,7 @@ import androidx.viewbinding.ViewBinding
 
 interface ViewBindingHolder<T : ViewBinding> {
     fun initBinding(binding: T, fragment: BaseFragment<*, T>, onBind: T.() -> Unit): View
+    fun unbindView()
 }
 
 class ViewBindingHolderImpl<T : ViewBinding> : ViewBindingHolder<T>, LifecycleObserver {
@@ -16,14 +17,6 @@ class ViewBindingHolderImpl<T : ViewBinding> : ViewBindingHolder<T>, LifecycleOb
     private var lifecycle: Lifecycle? = null
 
     private lateinit var fragmentName: String
-
-    @Suppress("Unused")
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroyView() {
-        lifecycle?.removeObserver(this)
-        lifecycle = null
-        binding = null
-    }
 
     override fun initBinding(
         binding: T,
@@ -36,5 +29,13 @@ class ViewBindingHolderImpl<T : ViewBinding> : ViewBindingHolder<T>, LifecycleOb
         fragmentName = fragment::class.simpleName ?: "N/A"
         binding.apply(onBind)
         return binding.root
+    }
+
+    @Suppress("Unused")
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    override fun unbindView() {
+        lifecycle?.removeObserver(this)
+        lifecycle = null
+        binding = null
     }
 }

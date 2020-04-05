@@ -5,7 +5,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 private val viewModelsModule = module {
-    viewModel { ProfileViewModel(get(), get()) }
+    viewModel { ProfileViewModel() }
 }
 
 val profileModules = listOf(

@@ -13,21 +13,19 @@ import io.reactivex.rxjava3.core.SingleTransformer
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 abstract class BaseViewModel(
-    private val schedulerProvider: SchedulerProvider,
-    private val getErrorMessage: GetErrorMessage
+    private val schedulerProvider: SchedulerProvider? = null,
+    private val getErrorMessage: GetErrorMessage? = null
 ) : ViewModel(), BaseContract.ViewModel {
 
     private val compositeDisposable = CompositeDisposable()
 
     private val error = MutableLiveData<String>()
-    private val isLoading = MutableLiveData<Unit>()
-    private val isNotLoading = MutableLiveData<Unit>()
+
+    protected val isLoading = MutableLiveData<Boolean>()
 
     override fun error(): LiveData<String> = error
 
-    override fun isLoading(): LiveData<Unit> = isLoading
-
-    override fun isNotLoading(): LiveData<Unit> = isNotLoading
+    override fun isLoading(): LiveData<Boolean> = isLoading
 
     override fun onCleared() {
         super.onCleared()
@@ -35,30 +33,28 @@ abstract class BaseViewModel(
     }
 
     protected fun postErrorMessage(throwable: Throwable) {
-        error.postValue(getErrorMessage(GetErrorMessageParams(throwable)))
+        error.postValue(getErrorMessage!!(GetErrorMessageParams(throwable)))
     }
 
-    protected fun <T> Single<T>.subscribe(
+    protected fun <T> Single<T>.handle(
         onSuccess: (T) -> Unit,
         onError: (Throwable) -> Unit
     ) = compositeDisposable.add(this.subscribe(onSuccess, onError))
 
-    protected fun Completable.subscribe(
+    protected fun Completable.handle(
         onSuccess: () -> Unit,
         onError: (Throwable) -> Unit
     ) = compositeDisposable.add(this.subscribe(onSuccess, onError))
 
-    protected fun <T> observeOnUIAfterSingleResult(upstream: Single<T>) =
+    protected fun <T> observeOnUIAfterSingleResult() =
         SingleTransformer<T, T> {
-            upstream
-                .subscribeOn(schedulerProvider.ui)
+            it.subscribeOn(schedulerProvider!!.ui)
                 .observeOn(schedulerProvider.io)
         }
 
-    protected fun observeOnUIAfterCompletableResult(upstream: Completable) =
+    protected fun observeOnUIAfterCompletableResult() =
         CompletableTransformer {
-            upstream
-                .subscribeOn(schedulerProvider.ui)
+            it.subscribeOn(schedulerProvider!!.ui)
                 .observeOn(schedulerProvider.io)
         }
 }

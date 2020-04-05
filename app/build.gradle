@@ -49,14 +49,10 @@ dependencies {
     implementation project(":search")
     implementation project(":profile")
 
-    testImplementation project(":core")
-
     implementation projectDependencies.kotlinStdlib
     implementation projectDependencies.materialDesign
     implementation projectDependencies.appCompat
     implementation projectDependencies.koin
     implementation projectDependencies.navigationFragment
     implementation projectDependencies.navigationUI
-
-    testImplementation testDependencies.junit
 }

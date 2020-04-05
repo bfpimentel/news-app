@@ -4,5 +4,5 @@ include ":core"
 include ":example"
 include ":feed"
 include ":search"
-include ':profile'
-include ':navigator'
+include ":profile"
+include ":navigator"

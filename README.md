@@ -17,7 +17,7 @@ Android application using:
 - Shared abstractions, *UseCases*, *Providers*, etc. resides within **:core** module.
 - Navigation routes resides within **:navigator**.
 - All modules except *:navigator* call **:core** module.
-- Features can but don't need to depend on another features. 
+- Features can call another features using Navigator, from **:navigator**.
 
 ## Feature Architecture
 

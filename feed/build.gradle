@@ -25,4 +25,5 @@ dependencies {
     implementation projectDependencies.koin
 
     testImplementation testDependencies.junit
+    testImplementation testDependencies.mockk
 }

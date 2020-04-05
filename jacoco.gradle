@@ -15,7 +15,8 @@ project.afterEvaluate {
             '**/*Module*.*',
             '**/*Activity*.*',
             '**/*Fragment*.*',
-            '**/*Application*.*'
+            '**/*Application*.*',
+            '**/SchedulerProvider.kt',
     ]
 
     final unitTestTasks = new ArrayList()

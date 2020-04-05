@@ -28,6 +28,7 @@ ext.projectDependencies = [
 ]
 
 ext.testDependencies = [
-        mockk: "io.mockk:mockk:1.9.3",
-        junit: "junit:junit:4.13"
+        androidTestCore: "androidx.arch.core:core-testing:2.1.0",
+        mockk      : "io.mockk:mockk:1.9.3",
+        junit      : "junit:junit:4.13"
 ]

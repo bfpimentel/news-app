@@ -38,12 +38,12 @@ abstract class BaseViewModel(
 
     protected fun <T> Single<T>.handle(
         onSuccess: (T) -> Unit,
-        onError: ((Throwable) -> Unit)
+        onError: (Throwable) -> Unit
     ) = compositeDisposable.add(this.subscribe(onSuccess, onError))
 
     protected fun Completable.handle(
         onSuccess: () -> Unit,
-        onError: ((Throwable) -> Unit)
+        onError: (Throwable) -> Unit
     ) = compositeDisposable.add(this.subscribe(onSuccess, onError))
 
     protected fun <T> observeOnUIAfterSingleResult() =

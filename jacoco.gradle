@@ -16,8 +16,8 @@ project.afterEvaluate {
             '**/*Activity*.*',
             '**/*Fragment*.*',
             '**/*Application*.*',
-            '**/SchedulerProvider**.kt',
-            '**/ViewBindingHolder**.kt',
+            '**/SchedulerProvider**.*',
+            '**/ViewBindingHolder**.*',
     ]
 
     final unitTestTasks = new ArrayList()

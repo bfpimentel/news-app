@@ -1,5 +1,9 @@
 apply(plugin: "jacoco")
 
+subprojects {
+    apply(plugin: "jacoco")
+}
+
 project.afterEvaluate {
     final fileExclusions = [
             'android/**/*.*',

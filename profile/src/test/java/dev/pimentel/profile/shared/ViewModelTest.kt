@@ -1,4 +1,4 @@
-package dev.pimentel.core.shared
+package dev.pimentel.profile.shared
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import dev.pimentel.core.abstractions.BaseContract

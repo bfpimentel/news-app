@@ -5,7 +5,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 private val viewModelModule = module {
-    viewModel { SearchViewModel(get(), get()) }
+    viewModel { SearchViewModel() }
 }
 
 val searchModules = listOf(

@@ -16,4 +16,12 @@ internal class GetErrorMessageTest {
             ""
         )
     }
+
+    @Test
+    fun `should find throwable inside params`() {
+        val error = IllegalArgumentException()
+        val params = GetErrorMessageParams(error)
+
+        assertEquals(params.throwable, error)
+    }
 }

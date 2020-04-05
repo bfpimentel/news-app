@@ -16,8 +16,8 @@ project.afterEvaluate {
             '**/*Activity*.*',
             '**/*Fragment*.*',
             '**/*Application*.*',
-            '**/SchedulerProvider.kt',
-            '**/ViewBindingHolder.kt',
+            '**/SchedulerProvider**.kt',
+            '**/ViewBindingHolder**.kt',
     ]
 
     final unitTestTasks = new ArrayList()
@@ -27,7 +27,7 @@ project.afterEvaluate {
 
     subprojects.stream()
             .map { it.name }
-            .filter { it != "navigator" && it != "example" }
+            .filter { it != "app" && it != "navigator" && it != "example" }
             .forEach { moduleName ->
                 unitTestTasks.add(":${moduleName}:testDebugUnitTest")
 

@@ -70,7 +70,6 @@ internal class BaseViewModelTest : ViewModelTest<TestContract.ViewModel>() {
 
     private val testCompletable = mockk<TestCompletable>()
     private val testSingle = mockk<TestSingle>()
-    private val getErrorMessage = mockk<GetErrorMessage>()
 
     override lateinit var viewModel: TestContract.ViewModel
 

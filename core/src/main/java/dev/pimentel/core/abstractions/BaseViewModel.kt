@@ -33,28 +33,28 @@ abstract class BaseViewModel(
     }
 
     protected fun postErrorMessage(throwable: Throwable) {
-        error.postValue(getErrorMessage?.invoke(GetErrorMessageParams(throwable)))
+        error.postValue(getErrorMessage!!(GetErrorMessageParams(throwable)))
     }
 
     protected fun <T> Single<T>.handle(
         onSuccess: (T) -> Unit,
-        onError: ((Throwable) -> Unit)? = null
+        onError: ((Throwable) -> Unit)
     ) = compositeDisposable.add(this.subscribe(onSuccess, onError))
 
     protected fun Completable.handle(
         onSuccess: () -> Unit,
-        onError: ((Throwable) -> Unit)? = null
+        onError: ((Throwable) -> Unit)
     ) = compositeDisposable.add(this.subscribe(onSuccess, onError))
 
     protected fun <T> observeOnUIAfterSingleResult() =
         SingleTransformer<T, T> {
-            it.subscribeOn(schedulerProvider?.ui)
-                .observeOn(schedulerProvider?.io)
+            it.subscribeOn(schedulerProvider!!.ui)
+                .observeOn(schedulerProvider.io)
         }
 
     protected fun observeOnUIAfterCompletableResult() =
         CompletableTransformer {
-            it.subscribeOn(schedulerProvider?.ui)
-                .observeOn(schedulerProvider?.io)
+            it.subscribeOn(schedulerProvider!!.ui)
+                .observeOn(schedulerProvider.io)
         }
 }

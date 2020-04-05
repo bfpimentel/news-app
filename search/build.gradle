@@ -20,12 +20,17 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":core")
 
+    implementation project(":core")
+    implementation project(":navigator")
     implementation projectDependencies.kotlinStdlib
     implementation projectDependencies.materialDesign
     implementation projectDependencies.appCompat
     implementation projectDependencies.koin
+    implementation projectDependencies.rxJava
+    implementation projectDependencies.rxAndroid
 
+    testImplementation testDependencies.androidTestCore
     testImplementation testDependencies.junit
+    testImplementation testDependencies.mockk
 }

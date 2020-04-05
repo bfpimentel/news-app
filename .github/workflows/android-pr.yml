@@ -31,9 +31,5 @@ jobs:
       - name: Generating Jacoco test report
         run: bash ./gradlew jacocoTestReport
       - name: Checking code coverage
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./build/reports/jacoco/jacocoTestReport.xml
-          fail_ci_if_error: false # Need to change to = true after fixing unit tests.
+        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
 

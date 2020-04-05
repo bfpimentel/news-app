@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Generating Jacoco test report and checking test coverage
+      - name: Generating Jacoco test report
         run: bash ./gradlew jacocoTestReport
       - name: Checking code coverage
         uses: codecov/codecov-action@v1

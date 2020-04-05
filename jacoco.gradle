@@ -25,7 +25,7 @@ project.afterEvaluate {
 
     subprojects.stream()
             .map { it.name }
-            .filter { it != "navigator" }
+            .filter { it != "navigator" && it != "example" }
             .forEach { moduleName ->
                 unitTestTasks.add(":${moduleName}:testDebugUnitTest")
 

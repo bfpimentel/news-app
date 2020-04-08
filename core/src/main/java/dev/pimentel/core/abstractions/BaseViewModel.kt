@@ -20,7 +20,6 @@ abstract class BaseViewModel(
     private val compositeDisposable = CompositeDisposable()
 
     private val error = MutableLiveData<String>()
-
     protected val isLoading = MutableLiveData<Boolean>()
 
     override fun error(): LiveData<String> = error

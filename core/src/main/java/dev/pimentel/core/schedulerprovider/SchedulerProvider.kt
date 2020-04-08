@@ -9,7 +9,7 @@ interface SchedulerProvider {
     val io: Scheduler
 }
 
-class SchedulerProviderImpl : SchedulerProvider {
+internal class SchedulerProviderImpl : SchedulerProvider {
 
     override val ui: Scheduler = AndroidSchedulers.mainThread()
 

@@ -13,6 +13,30 @@ android {
         minSdkVersion projectConfig.minSdkVersion
     }
 
+    buildTypes {
+        final properties = new Properties()
+        final propertiesFile = new File("api.properties")
+        propertiesFile.withInputStream { file ->
+            properties.load(file)
+        }
+
+        final apiUrlResName = "news_api_url"
+        final apiUrl = "https://newsapi.org/"
+
+        final apiKeyResName = "news_api_key"
+        final apiKey = properties.apiKey
+
+        release {
+            resValue("string", apiUrlResName, apiUrl)
+            resValue("string", apiKeyResName, apiKey)
+        }
+
+        debug {
+            resValue("string", apiUrlResName, apiUrl)
+            resValue("string", apiKeyResName, apiKey)
+        }
+    }
+
     viewBinding {
         enabled = true
     }
@@ -26,6 +50,9 @@ dependencies {
     implementation projectDependencies.koin
     implementation projectDependencies.rxJava
     implementation projectDependencies.rxAndroid
+    implementation projectDependencies.retrofitRxAdapter
+    implementation projectDependencies.retrofitGson
+    implementation projectDependencies.loggingInterceptor
 
     testImplementation testDependencies.androidTestCore
     testImplementation testDependencies.junit

@@ -1,16 +1,20 @@
 package dev.pimentel.feed.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dev.pimentel.core.abstractions.BaseViewModel
+import dev.pimentel.core.abstractions.NoParams
 import dev.pimentel.core.schedulerprovider.SchedulerProvider
 import dev.pimentel.core.usecases.GetErrorMessage
+import dev.pimentel.feed.data.usecases.FetchHeadlines
 import dev.pimentel.navigator.FeedNavigator
 
-class FeedViewModel(
-    schedulerProvider: SchedulerProvider,
+internal class FeedViewModel(
+    private val navigator: FeedNavigator,
+    private val fetchHeadlines: FetchHeadlines,
     getErrorMessage: GetErrorMessage,
-    private val navigator: FeedNavigator
+    schedulerProvider: SchedulerProvider
 ) : BaseViewModel(
     schedulerProvider,
     getErrorMessage
@@ -19,7 +23,15 @@ class FeedViewModel(
     private val testText = MutableLiveData<String>()
 
     override fun initialize() {
-        testText.postValue("Teste Fragmento Feed")
+        fetchHeadlines(NoParams)
+            .compose(observeOnUIAfterSingleResult())
+            .handle(
+                {
+                    Log.d("TESTE SUCESSO", it.toString())
+                    testText.postValue("Teste Fragmento Feed")
+                },
+                ::postErrorMessage
+            )
     }
 
     override fun testNavigator() {

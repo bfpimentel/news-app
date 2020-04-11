@@ -47,13 +47,13 @@ abstract class BaseViewModel(
 
     protected fun <T> observeOnUIAfterSingleResult() =
         SingleTransformer<T, T> {
-            it.subscribeOn(schedulerProvider!!.ui)
-                .observeOn(schedulerProvider.io)
+            it.subscribeOn(schedulerProvider!!.io)
+                .observeOn(schedulerProvider.ui)
         }
 
     protected fun observeOnUIAfterCompletableResult() =
         CompletableTransformer {
-            it.subscribeOn(schedulerProvider!!.ui)
-                .observeOn(schedulerProvider.io)
+            it.subscribeOn(schedulerProvider!!.io)
+                .observeOn(schedulerProvider.ui)
         }
 }

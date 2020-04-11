@@ -19,7 +19,7 @@ ext.projectDependencies = [
         navigationFragment: "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha04",
         navigationUI      : "androidx.navigation:navigation-ui-ktx:2.3.0-alpha04",
         retrofit          : "com.squareup.retrofit2:retrofit:2.6.2",
-        retrofitRxAdapter : "com.squareup.retrofit2:adapter-rxjava2:2.6.2",
+        retrofitRxAdapter : "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0",
         retrofitGson      : "com.squareup.retrofit2:converter-gson:2.6.1",
         loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:4.2.2",
         rxJava            : "io.reactivex.rxjava3:rxjava:3.0.1",

@@ -3,6 +3,7 @@ package dev.pimentel.core
 import dev.pimentel.core.schedulerprovider.SchedulerProvider
 import dev.pimentel.core.schedulerprovider.SchedulerProviderImpl
 import dev.pimentel.core.usecases.GetErrorMessage
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -10,7 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -35,7 +35,7 @@ private val networkModule = module {
                     .baseUrl(apiUrl)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .build()
 
             }

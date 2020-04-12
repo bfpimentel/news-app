@@ -34,6 +34,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: api.properties
+          path: ./api.properties
       - name: Run Detekt
         run: |
           cat api.properties
@@ -53,6 +54,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: api.properties
+          path: ./api.properties
       - name: Generate Jacoco test report
         run: bash ./gradlew jacocoTestReport
       - name: Check code coverage

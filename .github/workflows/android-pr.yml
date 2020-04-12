@@ -37,6 +37,8 @@ jobs:
           path: ./api.properties
       - name: Run Detekt
         run: |
+          ls
+          ls api.properties
           cat api.properties
           bash ./gradlew detekt
 
@@ -59,6 +61,8 @@ jobs:
         run: bash ./gradlew jacocoTestReport
       - name: Check code coverage
         run: |
+          ls
+          ls api.properties
           cat api.properties
           bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
 

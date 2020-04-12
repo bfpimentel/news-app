@@ -17,8 +17,7 @@ jobs:
       - name: Upload API key file
         uses: actions/upload-artifact@v1
         with:
-          name: apiKey
-          path: ./api.properties
+          name: api.properties
 
   code-analysis:
     name: Run Detekt for static code analysis
@@ -33,9 +32,11 @@ jobs:
       - name: Download API key file
         uses: actions/download-artifact@v1
         with:
-          name: apiKey
+          name: api.properties
       - name: Run Detekt
-        run: bash ./gradlew detekt
+        run: |
+          cat api.properties
+          bash ./gradlew detekt
 
   test:
     name: Runs all module unit tests and check test coverage
@@ -50,9 +51,11 @@ jobs:
       - name: Download API key file
         uses: actions/download-artifact@v1
         with:
-          name: apiKey
+          name: api.properties
       - name: Generate Jacoco test report
         run: bash ./gradlew jacocoTestReport
       - name: Check code coverage
-        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
+        run: |
+          cat api.properties
+          bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
 

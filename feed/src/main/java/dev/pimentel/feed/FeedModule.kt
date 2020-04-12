@@ -23,7 +23,7 @@ private val useCasesModule = module {
 }
 
 private val viewModelModule = module {
-    viewModel { FeedViewModel(get<Navigator>(), get(), get(), get()) }
+    viewModel { FeedViewModel(get<Navigator>(), get(), get()) }
 }
 
 val feedModules = listOf(

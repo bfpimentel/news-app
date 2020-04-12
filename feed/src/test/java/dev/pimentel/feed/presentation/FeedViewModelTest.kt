@@ -1,8 +1,9 @@
-package dev.pimentel.feed
+package dev.pimentel.feed.presentation
 
-import dev.pimentel.feed.shared.ViewModelTest
+import dev.pimentel.feed.data.usecases.FetchHeadlines
 import dev.pimentel.feed.presentation.FeedContract
 import dev.pimentel.feed.presentation.FeedViewModel
+import dev.pimentel.feed.shared.ViewModelTest
 import dev.pimentel.navigator.FeedNavigator
 import io.mockk.*
 import org.junit.Assert.assertEquals
@@ -11,14 +12,16 @@ import org.junit.Test
 class FeedViewModelTest : ViewModelTest<FeedContract.ViewModel>() {
 
     private val feedNavigator = mockk<FeedNavigator>()
+    private val fetchHeadlines = mockk<FetchHeadlines>()
 
     override lateinit var viewModel: FeedContract.ViewModel
 
     override fun setupSubject() {
         viewModel = FeedViewModel(
-            schedulerProvider,
+            feedNavigator,
+            fetchHeadlines,
             getErrorMessage,
-            feedNavigator
+            schedulerProvider
         )
     }
 

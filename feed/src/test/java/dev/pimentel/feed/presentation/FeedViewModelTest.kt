@@ -1,8 +1,6 @@
 package dev.pimentel.feed.presentation
 
 import dev.pimentel.feed.data.usecases.FetchHeadlines
-import dev.pimentel.feed.presentation.FeedContract
-import dev.pimentel.feed.presentation.FeedViewModel
 import dev.pimentel.feed.shared.ViewModelTest
 import dev.pimentel.navigator.FeedNavigator
 import io.mockk.*
@@ -19,7 +17,6 @@ class FeedViewModelTest : ViewModelTest<FeedContract.ViewModel>() {
     override fun setupSubject() {
         viewModel = FeedViewModel(
             feedNavigator,
-            fetchHeadlines,
             getErrorMessage,
             schedulerProvider
         )

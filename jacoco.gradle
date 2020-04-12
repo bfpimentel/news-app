@@ -18,6 +18,7 @@ project.afterEvaluate {
             '**/*Application*.*',
             '**/SchedulerProvider**.*',
             '**/ViewBindingHolder**.*',
+            '**/RequestInterceptor.*'
     ]
 
     final unitTestTasks = new ArrayList()

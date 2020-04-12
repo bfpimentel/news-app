@@ -1,5 +1,7 @@
 # News App
 
+![](https://github.com/bfpimentel/news-app/workflows/Android%20Pull%20Request%20CI/badge.svg)
+
 Android application using: 
 
 - Jetpack Navigation

@@ -29,6 +29,9 @@ dependencies {
     implementation projectDependencies.koin
     implementation projectDependencies.rxJava
     implementation projectDependencies.rxAndroid
+    implementation projectDependencies.retrofitRxAdapter
+    implementation projectDependencies.retrofitGson
+    implementation projectDependencies.loggingInterceptor
 
     testImplementation testDependencies.androidTestCore
     testImplementation testDependencies.junit

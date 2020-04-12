@@ -5,31 +5,60 @@ on:
     branches: 'develop'
 
 jobs:
-  code-analysis:
-    name: Runs Detekt for static code analysis
+  create-dependencies:
+    name: Create API key file
     runs-on: ubuntu-18.04
-
     steps:
-      - uses: actions/checkout@v1
-      - name: JDK setup
+      - name: Create API key file
+        shell: bash
+        run: |
+          echo "apiKey=0" >> api.properties
+          cat api.properties
+      - name: Upload API key file
+        uses: actions/upload-artifact@v1
+        with:
+          name: api.properties
+          path: ./api.properties
+
+  code-analysis:
+    name: Run Detekt for static code analysis
+    needs: create-dependencies
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup JDK
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Running Detekt
-        run: bash ./gradlew detekt
+      - name: Download API key file
+        uses: actions/download-artifact@v1
+        with:
+          name: api.properties
+          path: ./
+      - name: Run Detekt
+        run: |
+          cat api.properties
+          bash ./gradlew detekt
 
   test:
     name: Runs all module unit tests and check test coverage
+    needs: create-dependencies
     runs-on: ubuntu-18.04
-
     steps:
-      - uses: actions/checkout@v1
-      - name: JDK setup
+      - uses: actions/checkout@v2
+      - name: Setup JDK
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Generating Jacoco test report
+      - name: Download API key file
+        uses: actions/download-artifact@v1
+        with:
+          name: api.properties
+          path: ./
+      - name: Generate Jacoco test report
         run: bash ./gradlew jacocoTestReport
-      - name: Checking code coverage
-        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
+      - name: Check code coverage
+        run: |
+          cat api.properties
+          bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
 

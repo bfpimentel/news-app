@@ -7,10 +7,10 @@ import dev.pimentel.core.schedulerprovider.SchedulerProvider
 import dev.pimentel.core.usecases.GetErrorMessage
 import dev.pimentel.navigator.FeedNavigator
 
-class FeedViewModel(
-    schedulerProvider: SchedulerProvider,
+internal class FeedViewModel(
+    private val navigator: FeedNavigator,
     getErrorMessage: GetErrorMessage,
-    private val navigator: FeedNavigator
+    schedulerProvider: SchedulerProvider
 ) : BaseViewModel(
     schedulerProvider,
     getErrorMessage

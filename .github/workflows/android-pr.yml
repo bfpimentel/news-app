@@ -6,12 +6,11 @@ on:
 
 jobs:
   create-dependencies:
-    name: Create API key file
+    name: Creates API key file
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v1
       - name: Creating API key file
-        run: bash echo "apiKey=0" >> api.properties
+        run: mv api.properties-remote api.properties
 
   code-analysis:
     name: Runs Detekt for static code analysis

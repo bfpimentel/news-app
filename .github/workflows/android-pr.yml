@@ -17,7 +17,6 @@ jobs:
         with:
           name: api.properties
           path: api.properties
-        run: mv api.properties-remote api.properties
 
   code-analysis:
     name: Runs Detekt for static code analysis

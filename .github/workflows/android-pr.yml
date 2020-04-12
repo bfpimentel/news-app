@@ -6,33 +6,35 @@ on:
 
 jobs:
   create-dependencies:
-    name: Creates API key file
+    name: Create API key file
     runs-on: ubuntu-18.04
     steps:
-      - name: Creating API key file
+      - name: Create API key file
         shell: bash
-        run: echo "apiKey=0" >> api.properties
-      - name: Uploading API key file
+        run: |
+          echo "apiKey=0" >> api.properties
+          cat api.properties
+      - name: Upload API key file
         uses: actions/upload-artifact@v1
         with:
-          name: api.properties
-          path: api.properties
+          name: apiKey
+          path: ./api.properties
 
   code-analysis:
-    name: Runs Detekt for static code analysis
+    name: Run Detekt for static code analysis
     needs: create-dependencies
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: JDK setup
+      - name: Setup JDK
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Downloads API key file
+      - name: Download API key file
         uses: actions/download-artifact@v1
         with:
-          name: api.properties
-      - name: Running Detekt
+          name: apiKey
+      - name: Run Detekt
         run: bash ./gradlew detekt
 
   test:
@@ -41,16 +43,16 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: JDK setup
+      - name: Setup JDK
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: Downloads API key file
+      - name: Download API key file
         uses: actions/download-artifact@v1
         with:
-          name: api.properties
-      - name: Generating Jacoco test report
+          name: apiKey
+      - name: Generate Jacoco test report
         run: bash ./gradlew jacocoTestReport
-      - name: Checking code coverage
+      - name: Check code coverage
         run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
 

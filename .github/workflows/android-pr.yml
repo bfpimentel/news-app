@@ -18,6 +18,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: api.properties
+          path: ./api.properties
 
   code-analysis:
     name: Run Detekt for static code analysis

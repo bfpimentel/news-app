@@ -5,17 +5,8 @@ on:
     branches: 'develop'
 
 jobs:
-  create-dependencies:
-    name: Creates API key file
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - name: Creating API key file
-        run: mv api.properties-remote api.properties
-
   code-analysis:
     name: Runs Detekt for static code analysis
-    needs: create-dependencies
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
@@ -24,11 +15,12 @@ jobs:
         with:
           java-version: 1.8
       - name: Running Detekt
-        run: bash ./gradlew detekt
+        run: |
+          mv api.properties-remote api.properties
+          bash ./gradlew detekt
 
   test:
     name: Runs all module unit tests and check test coverage
-    needs: create-dependencies
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
@@ -39,5 +31,6 @@ jobs:
       - name: Generating Jacoco test report
         run: bash ./gradlew jacocoTestReport
       - name: Checking code coverage
-        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
-
+        run: |
+          mv api.properties-remote api.properties
+          bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }} -f build/reports/jacoco/jacocoTestReport.xml
